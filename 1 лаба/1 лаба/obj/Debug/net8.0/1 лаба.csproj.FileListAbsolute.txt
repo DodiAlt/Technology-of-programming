@@ -1,0 +1,14 @@
+C:\Users\ilsem\source\repos\8 семак\технология программирования\1 лаба\1 лаба\bin\Debug\net8.0\1 лаба.exe
+C:\Users\ilsem\source\repos\8 семак\технология программирования\1 лаба\1 лаба\bin\Debug\net8.0\1 лаба.deps.json
+C:\Users\ilsem\source\repos\8 семак\технология программирования\1 лаба\1 лаба\bin\Debug\net8.0\1 лаба.runtimeconfig.json
+C:\Users\ilsem\source\repos\8 семак\технология программирования\1 лаба\1 лаба\bin\Debug\net8.0\1 лаба.dll
+C:\Users\ilsem\source\repos\8 семак\технология программирования\1 лаба\1 лаба\bin\Debug\net8.0\1 лаба.pdb
+C:\Users\ilsem\source\repos\8 семак\технология программирования\1 лаба\1 лаба\obj\Debug\net8.0\1 лаба.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ilsem\source\repos\8 семак\технология программирования\1 лаба\1 лаба\obj\Debug\net8.0\1 лаба.AssemblyInfoInputs.cache
+C:\Users\ilsem\source\repos\8 семак\технология программирования\1 лаба\1 лаба\obj\Debug\net8.0\1 лаба.AssemblyInfo.cs
+C:\Users\ilsem\source\repos\8 семак\технология программирования\1 лаба\1 лаба\obj\Debug\net8.0\1 лаба.csproj.CoreCompileInputs.cache
+C:\Users\ilsem\source\repos\8 семак\технология программирования\1 лаба\1 лаба\obj\Debug\net8.0\1 лаба.dll
+C:\Users\ilsem\source\repos\8 семак\технология программирования\1 лаба\1 лаба\obj\Debug\net8.0\refint\1 лаба.dll
+C:\Users\ilsem\source\repos\8 семак\технология программирования\1 лаба\1 лаба\obj\Debug\net8.0\1 лаба.pdb
+C:\Users\ilsem\source\repos\8 семак\технология программирования\1 лаба\1 лаба\obj\Debug\net8.0\1 лаба.genruntimeconfig.cache
+C:\Users\ilsem\source\repos\8 семак\технология программирования\1 лаба\1 лаба\obj\Debug\net8.0\ref\1 лаба.dll
