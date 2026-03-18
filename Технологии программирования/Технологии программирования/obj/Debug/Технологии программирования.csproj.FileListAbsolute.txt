@@ -1,0 +1,11 @@
+C:\Users\ilsem\source\repos\8 семак\Technology-of-programming\Технологии программирования\Технологии программирования\bin\Debug\Технологии программирования.exe.config
+C:\Users\ilsem\source\repos\8 семак\Technology-of-programming\Технологии программирования\Технологии программирования\bin\Debug\Технологии программирования.exe
+C:\Users\ilsem\source\repos\8 семак\Technology-of-programming\Технологии программирования\Технологии программирования\bin\Debug\Технологии программирования.pdb
+C:\Users\ilsem\source\repos\8 семак\Technology-of-programming\Технологии программирования\Технологии программирования\obj\Debug\Технологии программирования.csproj.AssemblyReference.cache
+C:\Users\ilsem\source\repos\8 семак\Technology-of-programming\Технологии программирования\Технологии программирования\obj\Debug\CurrencyRatesApp.AddCurrencyRateDialog.resources
+C:\Users\ilsem\source\repos\8 семак\Technology-of-programming\Технологии программирования\Технологии программирования\obj\Debug\CurrencyRatesApp.MainForm.resources
+C:\Users\ilsem\source\repos\8 семак\Technology-of-programming\Технологии программирования\Технологии программирования\obj\Debug\Технологии_программирования.Properties.Resources.resources
+C:\Users\ilsem\source\repos\8 семак\Technology-of-programming\Технологии программирования\Технологии программирования\obj\Debug\Технологии программирования.csproj.GenerateResource.cache
+C:\Users\ilsem\source\repos\8 семак\Technology-of-programming\Технологии программирования\Технологии программирования\obj\Debug\Технологии программирования.csproj.CoreCompileInputs.cache
+C:\Users\ilsem\source\repos\8 семак\Technology-of-programming\Технологии программирования\Технологии программирования\obj\Debug\Технологии программирования.exe
+C:\Users\ilsem\source\repos\8 семак\Technology-of-programming\Технологии программирования\Технологии программирования\obj\Debug\Технологии программирования.pdb
