@@ -2,6 +2,7 @@
 {
     partial class MainForm
     {
+        private System.Windows.Forms.Button menuButton;
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button addButton;
@@ -138,6 +139,15 @@
             this.buttonPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
+            this.menuButton = new System.Windows.Forms.Button();
+            this.menuButton.Location = new System.Drawing.Point(340, 10);
+            this.menuButton.Name = "menuButton";
+            this.menuButton.Size = new System.Drawing.Size(100, 30);
+            this.menuButton.TabIndex = 3;
+            this.menuButton.Text = "В меню";
+            this.menuButton.UseVisualStyleBackColor = true;
+            this.menuButton.Click += new System.EventHandler(this.MenuButton_Click);
+            this.buttonPanel.Controls.Add(this.menuButton);
         }
 
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;

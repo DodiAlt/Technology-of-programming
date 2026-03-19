@@ -173,7 +173,6 @@ namespace CurrencyRatesApp
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            // Валидация данных
             if (string.IsNullOrWhiteSpace(fromCurrencyTextBox.Text))
             {
                 MessageBox.Show("Введите название валюты (из)", "Ошибка",

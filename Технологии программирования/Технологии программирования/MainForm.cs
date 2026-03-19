@@ -11,7 +11,6 @@ namespace CurrencyRatesApp
 
         public MainForm()
         {
-            // Инициализация сервисов
             var fileService = new FileService("currency_rates.txt");
             _rateService = new CurrencyRateService(fileService);
 
@@ -111,6 +110,12 @@ namespace CurrencyRatesApp
                     }
                 }
             }
+        }
+        private void MenuButton_Click(object sender, EventArgs e)
+        {
+            MenuForm menuForm = new MenuForm();
+            menuForm.Show();
+            this.Close();
         }
 
         private void UpdateStatus(string message)
