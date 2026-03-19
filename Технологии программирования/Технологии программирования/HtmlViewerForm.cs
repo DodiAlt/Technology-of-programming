@@ -9,9 +9,6 @@ namespace CurrencyRatesApp
     {
         private WebBrowser webBrowser;
         private Button backButton;
-        private Button refreshButton;
-        private Button homeButton;
-        private TextBox urlTextBox;
         private Panel topPanel;
 
         public HtmlViewerForm()
@@ -25,6 +22,14 @@ namespace CurrencyRatesApp
             this.Text = "HTML просмотрщик";
             this.Size = new Size(900, 600);
             this.StartPosition = FormStartPosition.CenterScreen;
+
+            // Верхняя панель с кнопками
+            topPanel = new Panel
+            {
+                Dock = DockStyle.Top,
+                Height = 40,
+                BackColor = Color.LightGray
+            };
 
             backButton = new Button
             {
@@ -43,14 +48,17 @@ namespace CurrencyRatesApp
                 IsWebBrowserContextMenuEnabled = true
             };
 
+            topPanel.Controls.AddRange(new Control[] {
+                backButton,
+            });
+
             this.Controls.Add(webBrowser);
             this.Controls.Add(topPanel);
         }
 
         private void LoadDefaultHtml()
         {
-            string htmlContent = 
-@"<!DOCTYPE html>
+            string htmlContent = @"<!DOCTYPE html>
 <html>
 <head>
     <meta charset='utf-8'>
@@ -67,7 +75,6 @@ namespace CurrencyRatesApp
             File.WriteAllText(tempHtmlFile, htmlContent);
             
             webBrowser.Navigate(tempHtmlFile);
-            urlTextBox.Text = tempHtmlFile;
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -87,25 +94,5 @@ namespace CurrencyRatesApp
             LoadDefaultHtml();
         }
 
-        private void UrlTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                NavigateToUrl();
-            }
-        }
-
-        private void NavigateToUrl()
-        {
-            string url = urlTextBox.Text.Trim();
-            if (!string.IsNullOrEmpty(url))
-            {
-                if (!url.StartsWith("http://") && !url.StartsWith("https://"))
-                {
-                    url = "http://" + url;
-                }
-                webBrowser.Navigate(url);
-            }
-        }
     }
 }
