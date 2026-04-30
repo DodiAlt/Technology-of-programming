@@ -1,0 +1,28 @@
+2026-04-14 20:13:29,005 - ERROR - ������ ��������: ������������ ������ ������: ������������_������_123
+2026-04-14 20:16:29,200 - ERROR - ������ ��������: ������������ ������ ������: ������������_������_123
+2026-04-14 20:19:42,622 - ERROR - ������ � ������: ������������_������_123 | ������ �� ������������� �������: ������������_������_123
+2026-04-14 20:20:31,210 - ERROR - ������ � ������: ������������_������_123 | ������ �� ������������� �������: ������������_������_123
+2026-04-15 13:57:06,979 - INFO - Добавлен объект: RUB-RAB по курсу 123.0
+2026-04-15 14:39:36,986 - INFO - Добавлен объект: Рубль-Доллар по курсу 89.0
+2026-04-26 22:54:40,443 - INFO - Файл команд C:/Users/ilsem/source/repos/8 семак/Technology-of-programming/Технологии программирования питон/data.txt успешно выполнен.
+2026-04-26 22:54:44,885 - INFO - Файл команд C:/Users/ilsem/source/repos/8 семак/Technology-of-programming/Технологии программирования питон/INPUT.TXT успешно выполнен.
+2026-04-26 23:00:56,605 - ERROR - Ошибка при выполнении файла команд: AppPresenter.save_to_file() takes 1 positional argument but 2 were given
+2026-04-26 23:01:04,901 - INFO - Файл команд C:/Users/ilsem/source/repos/8 семак/Technology-of-programming/Технологии программирования питон/bad_data.txt успешно выполнен.
+2026-04-26 23:01:23,443 - INFO - Файл команд C:/Users/ilsem/source/repos/8 семак/Technology-of-programming/Технологии программирования питон/bad_data.txt успешно выполнен.
+2026-04-26 23:01:26,583 - ERROR - Ошибка при выполнении файла команд: AppPresenter.save_to_file() takes 1 positional argument but 2 were given
+2026-04-26 23:01:31,458 - INFO - Файл команд C:/Users/ilsem/source/repos/8 семак/Technology-of-programming/Технологии программирования питон/data.txt успешно выполнен.
+2026-04-26 23:01:35,036 - INFO - Файл команд C:/Users/ilsem/source/repos/8 семак/Technology-of-programming/Технологии программирования питон/data.txt успешно выполнен.
+2026-04-26 23:01:48,038 - INFO - Файл команд C:/Users/ilsem/source/repos/8 семак/Technology-of-programming/Технологии программирования питон/data.txt успешно выполнен.
+2026-04-26 23:01:50,134 - INFO - Файл команд C:/Users/ilsem/source/repos/8 семак/Technology-of-programming/Технологии программирования питон/INPUT.TXT успешно выполнен.
+2026-04-26 23:01:53,083 - INFO - Файл команд C:/Users/ilsem/source/repos/8 семак/Technology-of-programming/Технологии программирования питон/bad_data.txt успешно выполнен.
+2026-04-26 23:01:55,521 - ERROR - Ошибка при выполнении файла команд: AppPresenter.save_to_file() takes 1 positional argument but 2 were given
+2026-04-30 10:21:38,244 - ERROR - Ошибка ручного ввода: Все поля должны быть заполнены! | Введено: ['asd', '', '', 'asdsad']
+2026-04-30 10:21:43,389 - ERROR - Ошибка ручного ввода: time data 'asdsad' does not match format '%Y.%m.%d' | Введено: ['asd', 'ds', '213', 'asdsad']
+2026-04-30 11:04:59,122 - ERROR - Ошибка при выполнении файла команд: AppPresenter.save_to_file() takes 1 positional argument but 2 were given
+2026-04-30 11:05:26,668 - ERROR - Ошибка при выполнении файла команд: AppPresenter.save_to_file() takes 1 positional argument but 2 were given
+2026-04-30 11:08:04,310 - INFO - Файл команд C:/Users/ilsem/source/repos/8 семак/Technology-of-programming/programming/commands.txt успешно выполнен.
+2026-04-30 11:08:08,622 - INFO - Файл команд C:/Users/ilsem/source/repos/8 семак/Technology-of-programming/programming/commands.txt успешно выполнен.
+2026-04-30 11:08:12,169 - INFO - Файл команд C:/Users/ilsem/source/repos/8 семак/Technology-of-programming/programming/commands.txt успешно выполнен.
+2026-04-30 11:08:33,009 - INFO - Добавлен объект: rub-dol по курсу 312312.0
+2026-04-30 11:25:21,348 - ERROR - Ошибка при выполнении файла команд: list index out of range
+2026-04-30 11:25:47,648 - INFO - Файл команд C:/Users/ilsem/source/repos/8 семак/Technology-of-programming/programming/commands.txt успешно выполнен.

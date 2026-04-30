@@ -1,0 +1,5 @@
+ADD "AED"; "RUB"; 20.5; 2026.04.25; "Высокое"
+ADD "AMD"; "RUB"; 0.19; 2026.04.25; "Низкое"
+REM rate > 90
+REM rate < 1
+SAVE filtered_results.txt

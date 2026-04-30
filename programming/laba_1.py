@@ -7,10 +7,10 @@ from dataclasses import dataclass, asdict
 from datetime import datetime
 from typing import List
 
-DEFAULT_FILE = "Технологии программирования питон\\data.txt"
+DEFAULT_FILE = "programming\\data.txt"
 
 logging.basicConfig(
-    filename='Технологии программирования питон\\app.log',
+    filename='programming\\app.log',
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     encoding='utf-8'
@@ -22,20 +22,23 @@ class CurrencyCourse:
     target_currency: str
     rate: float
     date: str
+    quality: str  # Новое поле
 
     def to_file_line(self) -> str:
-        return f'"{self.base_currency}" "{self.target_currency}" {self.rate} {self.date}\n'
-
+        # Обновляем формат записи в файл: добавляем качество в кавычках
+        return f'"{self.base_currency}" "{self.target_currency}" {self.rate} {self.date} "{self.quality}"\n'
+    
 class CurrencyParser:
     @staticmethod
     def parse_line(line: str) -> CurrencyCourse:
-        pattern = r'"([^"]*)"\s+"([^"]*)"\s+(\d+[.,]?\d*)\s+(\d{4}\.\d{2}\.\d{2})'
+        # Обновленное регулярное выражение: добавлена группа для последнего поля в кавычках
+        pattern = r'"([^"]*)"\s+"([^"]*)"\s+(\d+[.,]?\d*)\s+(\d{4}\.\d{2}\.\d{2})\s+"([^"]*)"'
         match = re.search(pattern, line)
         if not match:
-            raise ValueError(f"Ошибка формата: {line}")
+            raise ValueError(f"Ошибка формата (ожидалось 5 полей): {line}")
         
-        v1, v2, rate_str, date_str = match.groups()
-        return CurrencyCourse(v1, v2, float(rate_str.replace(',', '.')), date_str)
+        v1, v2, rate_str, date_str, quality = match.groups()
+        return CurrencyCourse(v1, v2, float(rate_str.replace(',', '.')), date_str, quality)
 
 class AddItemDialog(tk.Toplevel):
     def __init__(self, parent):
@@ -44,7 +47,7 @@ class AddItemDialog(tk.Toplevel):
         self.geometry("350x250")
         self.result = None
         
-        labels = ["Валюта 1:", "Валюта 2:", "Курс:", "Дата (гггг.мм.дд):"]
+        labels = ["Валюта 1:", "Валюта 2:", "Курс:", "Дата (гггг.мм.дд):", "Качество оценки"]
         self.entries = []
         for i, text in enumerate(labels):
             tk.Label(self, text=text).grid(row=i, column=0, padx=10, pady=5, sticky="e")
@@ -59,14 +62,13 @@ class AddItemDialog(tk.Toplevel):
     def __init__(self, parent):
         super().__init__(parent)
         self.title("Добавить курс")
-        self.geometry("400x300")  # Увеличили размер, чтобы всё влезло
+        self.geometry("400x300")
         self.result = None
         
-        # Контейнер для полей ввода (чтобы отделить их от кнопки)
         form_frame = tk.Frame(self)
         form_frame.pack(fill=tk.BOTH, expand=True, padx=20, pady=20)
 
-        labels = ["Валюта 1:", "Валюта 2:", "Курс:", "Дата (гггг.мм.дд):"]
+        labels = ["Валюта 1:", "Валюта 2:", "Курс:", "Дата (гггг.мм.дд):", "Качество оценки"]
         self.entries = []
 
         for i, text in enumerate(labels):
@@ -75,23 +77,21 @@ class AddItemDialog(tk.Toplevel):
             e.grid(row=i, column=1, padx=10, pady=10)
             self.entries.append(e)
 
-        # Кнопка сохранения - закрепляем внизу окна
         self.btn_save = tk.Button(
             self, 
             text="💾 Сохранить и записать в файл", 
             command=self.save,
-            bg="#e1e1e1",  # Немного цвета для заметности
+            bg="#e1e1e1",
             font=("Arial", 10, "bold")
         )
         self.btn_save.pack(side=tk.BOTTOM, fill=tk.X, padx=20, pady=20)
 
-        # Делаем окно модальным (блокирует основное, пока не закроют это)
         self.transient(parent)
         self.grab_set()
 
     def save(self):
         raw_values = [e.get().strip() for e in self.entries]
-        v1, v2, rate_str, date_str = raw_values
+        v1, v2, rate_str, date_str, quality_str = raw_values
 
         try:
             if not all(raw_values):
@@ -100,13 +100,11 @@ class AddItemDialog(tk.Toplevel):
             rate = float(rate_str.replace(',', '.'))
             datetime.strptime(date_str, "%Y.%m.%d")
 
-            # Если всё Ок
-            self.result = CurrencyCourse(v1, v2, rate, date_str)
+            self.result = CurrencyCourse(v1, v2, rate, date_str, quality_str)
             logging.info(f"Добавлен объект: {v1}-{v2} по курсу {rate}")
             self.destroy()
 
         except ValueError as e:
-            # Логируем ошибку в app.log (Задание 3)
             logging.error(f"Ошибка ручного ввода: {e} | Введено: {raw_values}")
             messagebox.showerror("Ошибка валидации", f"Проверьте данные:\n{e}")
 
@@ -115,16 +113,18 @@ class MainView(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Currency Manager (Auto-Sync)")
-        self.geometry("700x400")
+        self.geometry("1200x400")
         self._setup_ui()
 
     def _setup_ui(self):
-        columns = ("v1", "v2", "rate", "date")
+        columns = ("v1", "v2", "rate", "date", "quality")
         self.tree = ttk.Treeview(self, columns=columns, show="headings")
         self.tree.heading("v1", text="Валюта 1")
         self.tree.heading("v2", text="Валюта 2")
         self.tree.heading("rate", text="Курс")
         self.tree.heading("date", text="Дата")
+        self.tree.heading("quality", text="Качество")
+        self.tree.column("quality", width=100)
         self.tree.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
         btn_frame = tk.Frame(self)
@@ -138,6 +138,8 @@ class MainView(tk.Tk):
         
         self.lbl_status = tk.Label(self, text="Файл: синхронизирован", fg="green")
         self.lbl_status.pack(side=tk.BOTTOM, anchor="w", padx=10)
+        self.btn_run_commands = tk.Button(btn_frame, text="📜 Выполнить команды", width=20, bg="#d1e7dd")
+        self.btn_run_commands.pack(side=tk.LEFT, padx=5)
 
 class AppPresenter:
     def __init__(self, view: MainView, file_path: str):
@@ -147,6 +149,7 @@ class AppPresenter:
         
         self.view.btn_add.config(command=self.handle_add)
         self.view.btn_delete.config(command=self.handle_delete)
+        self.view.btn_run_commands.config(command=self.handle_run_commands)
         
         self.load_from_file()
 
@@ -165,7 +168,6 @@ class AppPresenter:
                         obj = CurrencyParser.parse_line(line)
                         self.items.append(obj)
                     except Exception as e:
-                        # Логируем некорректную строку и продолжаем работу
                         log_msg = f"Строка {i} пропущена. Причина: {e} | Контент: {line}"
                         logging.error(log_msg)
             self.refresh_ui()
@@ -173,7 +175,8 @@ class AppPresenter:
             logging.critical(f"Критическая ошибка доступа к файлу: {e}")
             messagebox.showerror("Ошибка", "Не удалось прочитать файл данных.")
 
-    def save_to_file(self):
+    def save_to_file(self, path=None):
+        target_path = path if path else self.file_path
         try:
             with open(self.file_path, 'w', encoding='utf-8') as f:
                 for item in self.items:
@@ -184,7 +187,7 @@ class AppPresenter:
     def refresh_ui(self):
         self.view.tree.delete(*self.view.tree.get_children())
         for item in self.items:
-            self.view.tree.insert("", tk.END, values=(item.base_currency, item.target_currency, item.rate, item.date))
+            self.view.tree.insert("", tk.END, values=(item.base_currency, item.target_currency, item.rate, item.date, item.quality))
 
     def handle_add(self):
         dialog = AddItemDialog(self.view)
@@ -205,7 +208,58 @@ class AppPresenter:
         
         self.save_to_file() 
 
+    def handle_run_commands(self):
+        path = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
+        if path:
+            processor = CommandProcessor(self)
+            try:
+                processor.execute_file(path)
+                messagebox.showinfo("Успех", "Команды выполнены!")
+            except Exception as e:
+                messagebox.showerror("Ошибка команд", str(e))
 
+class CommandProcessor:
+    """Класс для интерпретации и выполнения текстовых команд."""
+    
+    def __init__(self, presenter):
+        self.presenter = presenter
+
+    def execute_file(self, file_path: str):
+        """Читает файл команд и выполняет их по очереди."""
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                for line in f:
+                    line = line.strip()
+                    if not line: continue
+                    self.parse_and_execute(line)
+            self.presenter.refresh_ui()
+            logging.info(f"Файл команд {file_path} успешно выполнен.")
+        except Exception as e:
+            logging.error(f"Ошибка при выполнении файла команд: {e}")
+            raise
+
+    def parse_and_execute(self, command_line: str):
+        parts = command_line.split(' ', 1)
+        cmd = parts[0].upper()
+        args = parts[1] if len(parts) > 1 else ""
+
+        if cmd == "ADD":
+            data = [part.strip().strip('"') for part in args.split(';')]
+            new_obj = CurrencyCourse(data[0], data[1], float(data[2]), data[3], data[4])
+            self.presenter.items.append(new_obj)
+
+        elif cmd == "REM":
+            condition = args
+            safe_condition = condition.replace("rate", "item.rate")
+            
+            self.presenter.items = [
+                item for item in self.presenter.items 
+                if not eval(safe_condition, {"item": item})
+            ]
+
+        elif cmd == "SAVE":
+            path = args if args else self.presenter.file_path
+            self.presenter.save_to_file(path)
 
 if __name__ == "__main__":
     app_view = MainView()
